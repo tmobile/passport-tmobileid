@@ -1,0 +1,45 @@
+{
+  "name": "passport-tmobileid",
+  "version": "0.0.1",
+  "description": "T-Moblie ID authentication strategy for Passport.",
+  "keywords": [
+    "passport",
+    "T-Mobile",
+    "tmobile",
+    "auth",
+    "authn",
+    "authentication",
+    "identity",
+    "T-Mobile ID",
+    "tmoid"
+  ],
+  "author": {
+    "name": "Aaron Drake",
+    "email": "aaron.drake@t-mobile.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tmobile/passport-tmobileid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tmobile/passport-tmobileid/issues"
+  },
+  "licenses": [
+    {
+      "type": "T-Mobile Terms and Conditions",
+      "url": "https://github.com/tmobile/passport-tmobileid/blob/master/LICENSE"
+    }
+  ],
+  "main": "./lib",
+  "dependencies": {
+    "passport-strategy": "1.x.x"
+  },
+  "devDependencies": {
+    "mocha": "1.x.x",
+    "chai": "1.x.x",
+    "chai-passport-strategy": "0.2.x"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+}
