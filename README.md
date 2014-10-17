@@ -15,7 +15,7 @@ $ npm install passport-tmobileid
 ```
 ## Usage
 
-The T-Mobile ID authentication strategy authenticates users using their phone number or T-Mobile 
+The T-Mobile ID authentication strategy authenticates users using their phone number or T-Mobile
 ID username. Developers wishing to utilize this plugin must first redirect their users to the T-Mobile
 authorization endpoint with the appropriate params.
 ```
@@ -35,6 +35,7 @@ The strategy requires five elements in order to properly process the authenticat
   3. tokenPath - The path to the token request page
   4. clientID - Your client ID provied by T-Mobile
   5. clientSecret - Your client secret key provided by T-Mobile
+
 ```
 var TMobileIDStrategy = require('passport-tmoid').Strategy;
 
@@ -69,6 +70,7 @@ authenticate requests.
 
 For example, as route middleware in an [Express](http://expressjs.com/)
 application:
+
 ```
 app.get('/auth/tmoid',
   res.redirect('https://uat.auth.tmus.net/oauth2/v1/auth?' + qs.stringify(params)));
