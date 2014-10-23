@@ -1,6 +1,6 @@
 {
   "name": "passport-tmobileid",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "T-Moblie ID authentication strategy for Passport.",
   "keywords": [
     "passport",
