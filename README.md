@@ -31,8 +31,7 @@ res.redirect('https://uat.auth.tmus.net/oauth2/v1/auth?' + qs.stringify(params))
 
 The strategy requires five elements in order to properly process the authentication request, these are:
   1. redirect_uri - The callback URL local to your server
-  2. tokenHostname - This is the token endpoint servername provided by T-Mobile
-  3. tokenPath - The path to the token request page
+  3. tokenURL - The URL to the token request server
   4. clientID - Your client ID provied by T-Mobile
   5. clientSecret - Your client secret key provided by T-Mobile
 
@@ -41,8 +40,7 @@ var TMobileIDStrategy = require('passport-tmoid').Strategy;
 
 passport.use(new TMobileIDStrategy({
     redirect_uri : LOCAL_CALLBACK_URL,
-    tokenHostname : 'token.tmus.net',
-    tokenPath : '/oauth2/v1/token',
+    tokenURL : 'https://token.tmus.net/oauth2/v1/token',
     clientID : TMOBILE_CLIENT_ID,
     clientSecret : TMOBILE_CLIENT_SECRET,
     passReqToCallback : true //to get the req back from passport
@@ -93,7 +91,7 @@ For a complete, working example, refer to the [example](https://github.com/tmobi
 
 ## Related Modules
 
-## Tests
+## Tests - Not implemented yet
 
     $ npm install
     $ npm test
