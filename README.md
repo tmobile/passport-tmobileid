@@ -6,7 +6,7 @@ using a method similar to OAuth 2.0 API.
 This module lets you authenticate using T-Mobile ID in your Node.js applications.
 By plugging into Passport, T-Mobile ID authentication can be easily and
 unobtrusively integrated into any application or framework that supports
-[Connect](http://www.senchalabs.org/connect/)-style middleware, including
+[Connect](http://www.senchalabs.org/connect/)-style middleware, like
 [Express](http://expressjs.com/).
 
 ## Install
