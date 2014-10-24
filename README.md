@@ -25,7 +25,7 @@ var params = {'access_type': 'ONLINE',
   'client_id': TMOBILE_ID_CLIENT,
   'response_type' : 'code'};
 
-res.redirect('https://uat.auth.tmus.net/oauth2/v1/auth?' + qs.stringify(params));
+res.redirect('https://auth.tmus.net/oauth2/v1/auth?' + qs.stringify(params));
 ```
 #### Configure Strategy
 
