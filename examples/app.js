@@ -72,4 +72,5 @@ app.get('/auth/tmoid/callback',
       // Successful authentication, do nothing.
   });
 
+//Listen on port 3000
 app.listen(3000);
