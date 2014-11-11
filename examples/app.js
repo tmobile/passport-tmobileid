@@ -11,7 +11,7 @@ var params = {'access_type': 'ONLINE',
 var express = require('express')
     , passport = require('passport')
     , qs = require('qs')
-    , TMobileIDStrategy = require('passport-tmoid').Strategy;
+    , TMobileIDStrategy = require('passport-tmobileid').Strategy;
 
 passport.use(new TMobileIDStrategy({
     redirect_uri : LOCAL_CALLBACK_URL,
@@ -21,35 +21,39 @@ passport.use(new TMobileIDStrategy({
     passReqToCallback : true //to get the req back from passport
 },
 function(req, token, expiry, id, done){
-  if(err){return done(err);}
-  if(!token){return done(null, false);} //No token could be retrieved from the server
-  if(id) {
-    //A T-Mobile access token has been provided
-    User.findOne({'user.tmobileid' : id}, function(err,user){
-      if(user) //a user with this id has been found in your database
-        user.tmobile.access_token = token; //add the tmobile access token to this user
-        user.save(function(err){
-          //handle the error
-        }
-        return done(null, user); //success
-    });
-  }
-};
+    if (err) {
+        return done(err);
+    }
+    if (!token) {
+        return done(null, false);
+    } //No token could be retrieved from the server
+    if (id) {
+        //A T-Mobile access token has been provided
+        User.findOne({'user.tmobileid' : id}, function(err,user){
+            if(user) {//a user with this id has been found in your database
+                user.tmobile.access_token = token; //add the tmobile access token to this user
+                user.save(function(err) {
+                    //handle the error
+                });
+                return done(null, user); //success
+            }
+        });
+    }
+})
+);
 
 
-var app = express.createServer();
+var app = express();
 
 // configure Express
-app.configure(function() {
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
-  app.use(express.logger());
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(passport.initialize());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.use(passport.initialize());
+app.use(express.static(__dirname + '/public'));
+
+
+app.get('/', function(req, res){
+    res.render('index', { user: req.user });
 });
 
 app.get('/login', function(req, res) {
@@ -60,8 +64,9 @@ app.get('/profile', function(req, res) {
     res.render('profile', { user: req.user});
 });
 
-app.get('/auth/tmoid',
-  res.redirect('https://uat.auth.tmus.net/oauth2/v1/auth?' + qs.stringify(params)));
+app.get('/auth/tmoid', function(req, res) {
+    res.redirect('https://uat.auth.tmus.net/oauth2/v1/auth?' + qs.stringify(params));
+});
 
 app.get('/auth/tmoid/callback',
   passport.authenticate('tmoid', {
