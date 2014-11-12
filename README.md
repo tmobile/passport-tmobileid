@@ -20,23 +20,25 @@ ID username. Developers wishing to utilize this plugin must first redirect their
 authorization endpoint with the appropriate params.
 ```
 var params = {'access_type': 'ONLINE',
-  'redirect_uri': 'https://localhost:3000/tmoid/callback',
+  'redirect_uri': 'https://localhost:3000/auth/tmoid/callback',
   'scope': 'TMO_ID_profile,associated_lines,billing_information,entitlements',
-  'client_id': TMOBILE_ID_CLIENT,
+  'client_id': TMOBILE_CLIENT_ID,
   'response_type' : 'code'};
 
 res.redirect('https://auth.tmus.net/oauth2/v1/auth?' + qs.stringify(params));
 ```
 #### Configure Strategy
 
-The strategy requires five elements in order to properly process the authentication request, these are:
+The strategy requires four elements in order to properly process the
+authentication request, these are:
   1. redirect_uri - The callback URL local to your server
   3. tokenURL - The URL to the token request server
   4. clientID - Your client ID provied by T-Mobile
   5. clientSecret - Your client secret key provided by T-Mobile
 
+*Note: The strategy supports other standard passport arguments such as passReqToCallback.*
 ```
-var TMobileIDStrategy = require('passport-tmoid').Strategy;
+var TMobileIDStrategy = require('passport-tmobileid').Strategy;
 
 passport.use(new TMobileIDStrategy({
     redirect_uri : LOCAL_CALLBACK_URL,
@@ -51,12 +53,12 @@ function(req, token, expiry, id, done){
   if(id) {
     //A T-Mobile access token has been provided
     User.findOne({'user.tmobileid' : id}, function(err,user){
-      if(user) //a user with this id has been found in your database
+      if(user) { //a user with this id has been found in your database
         user.tmobile.access_token = token; //add the tmobile access token to this user
         user.save(function(err){
           //handle the error
         }
-        return done (null, user); //success
+        return done(null, user); //success
     });
   }
 };  
