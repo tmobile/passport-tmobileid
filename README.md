@@ -89,18 +89,10 @@ app.get('/auth/tmoid/callback',
 
 For a complete, working example, refer to the [example](https://github.com/tmobile/passport-tmobileid/tree/master/examples).
 
-## Issues
-
-## Related Modules
-
-## Tests - Not implemented yet
-
-    $ npm install
-    $ npm test
-
 ## Credits
 
   - [Aaron Drake](https://github.com/drakar)
+  - [Michael Brew](https://github.com/MichaelBrew)
 
 ## License
 
