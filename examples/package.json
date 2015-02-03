@@ -1,5 +1,5 @@
 {
-  "name": "passport-tmobileid-examples",
+  "name": "passport-tmobileid-example",
   "version": "0.0.0",
   "dependencies": {
     "qs": ">= 0.0.0",
